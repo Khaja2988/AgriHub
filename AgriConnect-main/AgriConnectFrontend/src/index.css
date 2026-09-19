@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-emerald: #1b5e20;
+  --primary-dark: #0f3813;
+  --primary-light: #2e7d32;
+  --accent-gold: #f59e0b;
+  --accent-amber: #d97706;
+  --accent-lime: #43a047;
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 12px 36px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(10, 26, 14, 0.74), rgba(14, 36, 19, 0.80)), url('/farmer_field_bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--glass-shadow);
+  border-radius: 18px;
+}
+
+.glass-panel-dark {
+  background: rgba(15, 38, 20, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  color: #ffffff;
+}
+
+/* AI Leaf Scanner Animation */
+@keyframes leafLaserScan {
+  0% {
+    top: 2%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 94%;
+    opacity: 1;
+  }
+  100% {
+    top: 2%;
+    opacity: 0.8;
+  }
+}
+
+.laser-scanner-line {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00e676, #76ff03, #00e676, transparent);
+  box-shadow: 0 0 15px #00e676, 0 0 25px #76ff03;
+  animation: leafLaserScan 2s ease-in-out infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Pulse animation for high-threat disease alerts */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(229, 57, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+  }
+}
+
+.pulse-alert {
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
