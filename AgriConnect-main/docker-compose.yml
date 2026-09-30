@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      NODE_ENV: development
+      MONGODB_URI: mongodb+srv://skabdulkhadarzilani0729_db_user:AgriHub2026@cluster0.kwzvtm2.mongodb.net/agrihub?retryWrites=true&w=majority&appName=Cluster0
+      JWT_SECRET: agrihub_super_secret_jwt_key_2026
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
