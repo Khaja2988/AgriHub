@@ -19,8 +19,34 @@ const aiRoutes = require('./routes/aiRoutes');
 
 const app = express();
 
+// CORS Configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://khaja2988.github.io/AgriHub',  // GitHub Pages production
+      'http://localhost:3000',                 // Local React dev
+      'http://localhost:5000',                 // Local backend
+      'http://localhost:5173',                 // Vite dev server
+      'http://127.0.0.1:3000',                 // Alternative localhost
+      'http://127.0.0.1:5000',                 // Alternative localhost
+      'http://127.0.0.1:5173',                 // Alternative Vite
+    ];
+
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy: Origin not allowed'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 200
+};
+
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
