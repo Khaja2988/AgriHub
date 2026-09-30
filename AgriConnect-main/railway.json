@@ -1,8 +1,0 @@
-{
-  "build": {
-    "builder": "dockerfile",
-    "buildCommand": "npm install"
-  },
-  "start": "node src/server.js",
-  "watchPaths": ["src/"]
-}
