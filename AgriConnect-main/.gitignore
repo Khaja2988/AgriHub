@@ -1,0 +1,45 @@
+# Root level gitignore
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+target/
+*.log
+
+# Dependencies
+node_modules/
+*.egg-info/
+__pycache__/
+
+# Database
+*.sqlite
+*.sqlite3
+seed_agriconnect.sql
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# GitHub Pages
+gh-pages/
+
+# IDE files
+.vscode/settings.json
+.vscode/extensions.json
+
+# OS files
+Thumbs.db
+.DS_Store

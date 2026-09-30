@@ -1,0 +1,38 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: 'AgriConnectFrontend/package-lock.json'
+      
+      - name: Install dependencies
+        working-directory: ./AgriConnectFrontend
+        run: npm install
+      
+      - name: Run linter
+        working-directory: ./AgriConnectFrontend
+        run: npm run lint --fix || true
+      
+      - name: Build verification
+        working-directory: ./AgriConnectFrontend
+        run: npm run build
